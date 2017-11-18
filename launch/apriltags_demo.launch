@@ -17,9 +17,6 @@
 	<arg name="/camera/raw/rect" default="true"/>
 	<arg name="apriltags" default="true"/>
 	<!-- end switch args -->
-	
-	<!-- Enable statistics -->
-	<param name="enable_statistics" value="$(arg statistics)"/>
 
 	<!-- Start Camera -->  
 	<group if="$(arg camera)">
