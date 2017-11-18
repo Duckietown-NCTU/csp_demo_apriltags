@@ -16,6 +16,7 @@
 	<arg name="/camera/cam_info" default="true"/>
 	<arg name="/camera/raw/rect" default="true"/>
 	<arg name="apriltags" default="true"/>
+	<arg name="following" default="false"/>
 	<!-- end switch args -->
 
 	<!-- Start Camera -->  
@@ -76,7 +77,7 @@
     </group>
 	<!-- End Camera -->
 
-	<!-- =========================================================================== -->
+	<!-- ============================ PART 1 ============================== -->
 
 	<!-- Start April Tags -->
 	<group if="$(arg apriltags)">
@@ -99,5 +100,28 @@
 		</include>
 	</group>
 	<!--End Apriltags -->
+
+	<!-- ============================ PART 2 ============================== -->
+
+	<!-- Start Following -->
+	<group if="$(arg following)">
+		<!-- Follow apriltags node -->
+		<remap from="follow_apriltags_node/position_info" to="detect_apriltags_node/position_info" />
+		<include file="$(find csp_demo_apriltags)/launch/follow_apriltags_node.launch">
+			<arg name="veh" value="$(arg veh)"/>
+			<arg name="local" value="$(arg local)"/>
+		</include>
+
+	    <remap from="inverse_kinematics_node/wheels_cmd" to="wheels_driver_node/wheels_cmd" />
+		<remap from="inverse_kinematics_node/car_cmd" to="follow_apriltags_node/car_cmd"/>
+		<include file="$(find dagu_car)/launch/inverse_kinematics_node.launch">
+			<arg name="veh" value="$(arg veh)"/>
+		</include>
+
+		<!-- Wheel Driver -->
+		<include file="$(find dagu_car)/launch/wheels_driver_node.launch">
+			<arg name="veh" value="$(arg veh)"/>
+		</include>
+	</group>
 
 </launch>
