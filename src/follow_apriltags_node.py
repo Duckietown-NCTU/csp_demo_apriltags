@@ -47,7 +47,7 @@ class AprilFollow(object):
 
     # make the robot stop
     def stop(self):
-        rospy.sleep(0.3)
+        rospy.sleep(0.2)
         cmd = Twist2DStamped()
         cmd.v = 0
         cmd.omega = 0
