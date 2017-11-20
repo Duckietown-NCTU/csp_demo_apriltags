@@ -6,7 +6,7 @@
 
     <group ns="$(arg veh)">
         <node unless="$(arg local)" machine="$(arg veh)" name="$(arg node_name)" pkg="$(arg pkg_name)"
-              type="$(arg node_name).py" output="screen">
+              type="???" output="screen">
         </node>
     </group>
 </launch>

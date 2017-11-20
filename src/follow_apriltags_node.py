@@ -14,7 +14,7 @@ class AprilFollow(object):
         self.pose = Point()
 
         # -------- subscriber --------
-        self.sub_pose = rospy.Subscriber("???", Point, self.callback, queue_size=1)
+        self.sub_pose = rospy.Subscriber("~input", ???, self.callback, queue_size=1)
 
         # -------- publisher --------
         self.pub_car_cmd = rospy.Publisher("~car_cmd", Twist2DStamped, queue_size=1)
@@ -28,18 +28,18 @@ class AprilFollow(object):
         
     def car_cmd(self):
         cmd = Twist2DStamped()
-        if self.pose.z > 0.15:
+        if self.pose.z > 0.15:#if the tag is too far
             cmd.v = 0.2
-        elif self.pose.z < 0.20: 
+        elif self.pose.z < 0.20: #if the tag is too close
             cmd.v = -0.2
-        else:
+        else: # distance is between 0.15~0.20 
             cmd.v = 0
             
-        if self.pose.x > 0.02:
+        if self.pose.x > 0.02: #if the tag is at right side
             cmd.omega = -1.8
-        elif self.pose.x < -0.02:
+        elif self.pose.x < -0.02: #if the tag is at left side
             cmd.omega = 1.8
-        else:
+        else: # do not turn
             cmd.omega = 0
 
         #publish the cmd

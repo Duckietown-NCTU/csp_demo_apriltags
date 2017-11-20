@@ -31,8 +31,9 @@ class AprilPostPros(object):
             print ("ID: ", tag_id)
             print ("(x,y,z): ", x, y, z)
 
+            #send the msg of the poing
             pos = Point()
-            pos = detection.pose.pose.position
+            #pos = ???
             self.pub_info.publish(pos)
         
 if __name__ == '__main__': 

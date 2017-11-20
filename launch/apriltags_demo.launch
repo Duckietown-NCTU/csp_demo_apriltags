@@ -91,9 +91,9 @@
 			<arg name="config" value="$(arg config)"/>
 			<arg name="param_file_name" value="$(arg param_file_name)"/>
 		</include>
-		<!-- Postprocessing node -->
+		<!-- open detect_apriltags_node -->
 		<remap from="detect_apriltags_node/tag_info" to="tag_detections" />
-		<include file="$(find csp_demo_apriltags)/launch/detect_apriltags_node.launch">
+		<include ???>
 			<arg name="veh" value="$(arg veh)"/>
 			<arg name="local" value="$(arg local)"/>
 			<arg name="config" value="$(arg config)"/>
@@ -106,8 +106,10 @@
 	<!-- Start Following -->
 	<group if="$(arg following)">
 		<!-- Follow apriltags node -->
-		<remap from="follow_apriltags_node/position_info" to="detect_apriltags_node/position_info" />
-		<include file="$(find csp_demo_apriltags)/launch/follow_apriltags_node.launch">
+		<!-- Receive msg from detect_apriltags_node -->
+		<remap ???/>
+		<!-- open follow_apriltags_node -->
+		<include ???>
 			<arg name="veh" value="$(arg veh)"/>
 			<arg name="local" value="$(arg local)"/>
 		</include>
