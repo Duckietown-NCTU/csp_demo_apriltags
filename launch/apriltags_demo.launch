@@ -107,12 +107,12 @@
 	<group if="$(arg following)">
 		<!-- Follow apriltags node -->
 		<!-- Receive msg from detect_apriltags_node -->
-		<remap ???/>
+		<!--remap ???/-->
 		<!-- open follow_apriltags_node -->
-		<include ???>
+		<!--include ???>
 			<arg name="veh" value="$(arg veh)"/>
 			<arg name="local" value="$(arg local)"/>
-		</include>
+		</include-->
 
 	    <remap from="inverse_kinematics_node/wheels_cmd" to="wheels_driver_node/wheels_cmd" />
 		<remap from="inverse_kinematics_node/car_cmd" to="follow_apriltags_node/car_cmd"/>
