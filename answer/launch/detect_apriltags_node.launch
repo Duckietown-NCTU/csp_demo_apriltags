@@ -1,0 +1,14 @@
+<launch>
+    <arg name="pkg_name" value="csp_demo_apriltags"/>
+    <arg name="node_name" default="detect_apriltags_node"/>
+    <arg name="veh" doc="Name of vehicle. ex: megaman"/>
+    <arg name="local" default="false"/>
+    <arg name="config" default="baseline" doc="Specify a config."/>
+
+    <group ns="$(arg veh)">
+
+        <node unless="$(arg local)" machine="$(arg veh)" name="$(arg node_name)" pkg="$(arg pkg_name)"
+              type="$(arg node_name).py" output="screen">
+        </node>
+    </group>
+</launch>
